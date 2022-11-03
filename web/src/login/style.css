@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Glegoo;
+    src: url(../fonts/Glegoo-Regular.ttf) format('truetype'); 
+}
+
+#login-title {
+    font-size: 38px;
+}
+
+#next-button {
+    float: right;
+    color: white;
+    background-color: #34a8eb;
+    cursor: pointer;
+    margin-top: 12px;
+    padding: 10px 50px;
+}
+
+#next-button:hover {
+    background-color: #4ab4f1;
+}
+
+.textbox::placeholder {
+    color: #bebebe;
+    font-family: "Glegoo", sans-serif;
+}
+
+.textbox:-webkit-autofill {
+    -webkit-text-fill-color: #777777;
+}
+.textbox:-webkit-autofill:focus {
+    -webkit-text-fill-color: #383838;
+}
+
+.textbox:focus {
+    color:#383838;
+}
+
+.textbox {
+    margin-top: 20px;
+    border-radius: 1px;
+    border: 1px solid #979797;
+    width: 100%;
+    padding: 15px;
+    outline: none;
+    font-size: 23px;
+    color: #383838;
+}
+
+.hyperlink {
+    font-size: 12px;
+    color: #34a8eb;
+    cursor: pointer;
+    float: left;
+}
+
+.hyperlink:hover {
+    color: #347aeb;
+}
+
+.full-container {
+    height: 100%; 
+}
+
+.login-container {
+    overflow: hidden;
+    background-color: white;
+    padding: 80px 30px 50px 30px;
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: 0px 0px 10px 0.5px rgb(77, 77, 77);
+    height: auto;
+    width: 40%;
+}
+
+.body-custom-board-background {
+    background: url(../sources/login_background.jpg) !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Glegoo", sans-serif;
+}
+
+
+@media screen and (max-width: 600px) {
+    #login-title {
+        font-size: 20px;
+    }
+    .login-container {
+        width: 80%;
+    }
+    #next-button {
+        padding: 10px 30px;
+        font-size: 12px;
+    }
+    .textbox {
+        width: 100%;
+        padding: 10px;
+        font-size: 12px;
+    }
+    .login-container {
+        padding: 20px 20px 20px 20px;
+    }
+}

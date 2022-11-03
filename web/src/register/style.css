@@ -1,0 +1,113 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Glegoo;
+    src: url(../fonts/Glegoo-Regular.ttf) format('truetype'); 
+}
+
+#title {
+    font-size: 38px;
+}
+
+
+#box-title {
+    font-size: 18px;
+    display: block;
+}
+
+#next-button {
+    float: right;
+    color: white;
+    background-color: #34a8eb;
+    cursor: pointer;
+    padding: 10px 50px;
+    font-size: 16px;
+    border: none;
+}
+
+.textbox::placeholder {
+    color: #bebebe;
+    font-family: "Glegoo", sans-serif;
+}
+
+.textbox {
+    margin-bottom: 20px;
+    border-radius: 1px;
+    border: 1px solid #979797;
+    width: 60%;
+    padding: 8px;
+    outline: none;
+    font-size: 18px;
+    color: #2e2e2e;
+}
+
+.hyperlink {
+    font-size: 12px;
+    color: #34a8eb;
+    cursor: pointer;
+    float: left;
+}
+
+.hyperlink:hover {
+    color: #347aeb;
+}
+
+.full-container {
+    height: 100%; 
+}
+
+.login-container {
+    overflow: hidden;
+    background-color: white;
+    padding: 60px 30px 20px 30px;
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: 0px 0px 10px 0.5px rgb(77, 77, 77);
+    height: auto;
+    width: 30%;
+}
+
+.body-custom-board-background {
+    background: url(../sources/login_background.jpg) !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Glegoo", sans-serif;
+}
+
+
+@media screen and (max-width: 600px) {
+    #title {
+        font-size: 20px;
+    }
+
+    #box-title {
+        font-size: 14px;
+    }
+
+    .login-container {
+        width: 80%;
+        padding: 20px 20px 20px 20px;
+    }
+
+    #next-button {
+        padding: 10px 50px;
+        font-size: 18px;
+        width: 100%;
+        float: left;
+    }
+    .textbox {
+        width: 100%;
+        padding: 8px;
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="libs/external/jquery-3.6.0.min.js"></script>
+    <script src="libs/external/js.cookie.min.js"></script>
+    <script src="libs/models.js"></script>
+    <script src="libs/persistance.js"></script>
+    <script src="libs/calendar.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div id="alertbox"></div>
+    <div id="create-button">
+        <a>+</a>
+    </div>
+    <div id="alert-overlay" class="hide"></div>
+    <div id="popup-overlay" class="hide"></div>
+    <div id="create-edit-screen" class="popup-screen hide">
+        <form class="popup-form">
+        <div class="row">
+            <div class="col-20">
+                <span class="clr-1 dot" id="selected-color"></span>
+                <div id="color-pick" class="hide">
+                    <div id="color-box">
+                        <span value="1" class="dot clr-1"></span>
+                        <span value="2" class="dot clr-2"></span>
+                        <span value="3" class="dot clr-3"></span>
+                        <span value="4" class="dot clr-4"></span>
+                        <span value="5" class="dot clr-5"></span>
+                        <span value="6" class="dot clr-6"></span>
+                        <span value="7" class="dot clr-7"></span>
+                        <span value="8" class="dot clr-8"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-60">
+                <input id="box-title" class="full" value="New Item"></input>
+            </div>
+
+            <div class="col-20">
+                <a class="cancel-btn">&#x2715</a>
+            </div>
+            
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-25">
+              <label>Description</label>
+            </div>
+            <div class="col-75">
+              <textarea id="box-description" type="text" class="full input textarea" placeholder="Description here..."></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <label>Start date</label>
+            </div>
+            <div class="col-75">
+              <input id="box-startdate" type="datetime-local" class="full input">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <label>End date</label>
+            </div>
+            <div class="col-75">
+              <input id="box-enddate" type="datetime-local"  class="full input">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <label>Repeat</label>
+            </div>
+            <div class="col-75">
+                <select id="box-repeattype" class="full input" id="repeat-select">
+                    <option class="input" value="0">None</option>
+                    <option class="input" value="1">Daily</option>
+                    <option class="input" value="2">Weekly</option>
+                    <option class="input" value="3">Monthly</option>
+                    <option class="input" value="4">Yearly</option>
+                </select>
+                <div class="col-50 hide" id="repeat-label">
+                    <label>Repeat every</label>
+                </div>
+                <input id="box-repeatamount" type="number" class="half input hide" id="repeat-input" value="1" min="1" max="31">
+
+                <div class="col-50 hide" id="repeat-label">
+                    <label>Stop</label>
+                </div>
+                <input id="box-repeatstopdate" type="date"  class="full input hide">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <label>Notify</label>
+            </div>
+            <div class="col-75">
+              <input type="checkbox" id="popup-notification-email" class="input">email</input>
+              <input type="checkbox" id="popup-notification-popup" class="input">popup</input>
+            </div>
+        </div>
+        <div class="row" id="bottom-corner">
+            <div class="full">
+                <a id="popup-delete" class="del-btn">Delete</a>
+                <input id="popup-save" type="submit" class="btn" value="Save"></input>
+            </div>
+        </div>
+        
+        </form>
+    </div>
+    <div id="create-edit-calendar-screen" class="hide popup-screen">
+        <form class="popup-form">
+        <div class="row">
+            <div class="col-90">
+                <input id="box-calendar-title" class="full" value="New Calendar"></input>
+            </div>
+            <div class="col-10">
+                <a class="cancel-btn">&#x2715</a>
+            </div>
+        </div>
+        <hr/>
+        <div class="row" id="row-owner">
+            <div class="col-25">
+                <label>Owner</label>
+            </div>
+            <div class="col-75">
+                <span id="box-calendar-owner" class="full" value=""></span>
+            </div>
+        </div>
+
+        <div class="row" id="row-permissions">
+            <div class="col-25">
+                <label>Permissions</label>
+            </div>
+            <div class="col-75">
+                <span id="box-calendar-permissions" class="full" value=""></span>
+            </div>
+        </div>
+
+        <div class="row" id="bottom-corner">
+            <div class="full">
+                <input id="popup-calendar-save" type="submit" class="btn" value="Save"></input>
+            </div>
+        </div>
+
+        <div class="row" id="row-shared">
+            <div class="col-100">
+                <label>Shared Users</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-33"><strong>Username</strong></div>
+            <div class="col-15"><strong>Create</strong></div>
+            <div class="col-15"><strong>Edit</strong></div>
+            <div class="col-15"><strong>Delete</strong></div>
+            <div class="col-15"><strong>Action</strong></div>
+        </div>
+        <div id="sharedlist">
+        </div>
+        <div class="row">
+            <div class="col-33"><input id="add-permission-user" style="width: 75%;" type="text"></input></div>
+            <div class="col-15"><input id="add-permission-create" type="checkbox"></input></div>
+            <div class="col-15"><input id="add-permission-edit" type="checkbox"></input></div>
+            <div class="col-15"><input id="add-permission-delete" type="checkbox"></input></div>
+            <div class="col-15"><input id="add-permission" type="submit" value="add"></input></div>
+        </div>
+        </form>
+    </div>    
+    <div id="body-custom-board-background">
+    </div>
+        <div class="container">
+            <div id="header">
+                <div id="navbar" class="rndbar hide">
+                    <ul>
+                        <li><a href="#">Calendars</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Prefferences</a></li>
+                        <li><a href="#">Tools</a></li>
+                    </ul>
+                </div>
+                <div id="logout" class="rndbar">
+                    <a href="#">Logout</a>
+                </div>
+                <div class="clr"></div>
+            </div>
+            <div id="content">
+                <div id="calendar">
+                    <div id="board-buttons">
+                        <div class="board-button">
+                            <a id="date-title" class="header"></a>
+                        </div>
+                        <div class="board-button">
+                            <h1 id="calendar-title" class="title"></h1>
+                            <i id="showcalendars" class="button triangle-down" class="title"></i>
+                            <div id="calendarlist" class="hide"></div>
+                        </div>
+                        <div class="board-button">
+                            <div id="month-selector" class="header-button">
+                                <i class="button triangle-left updown-button" onclick="board.previousMonth()"></i>
+                                <a class="button" id="month-display"></a>
+                                <i class="button triangle-right updown-button" onclick="board.nextMonth()"></i>
+                            </div>
+    
+                            <div id="year-selector" class="header-button">
+                                <i class="button triangle-left updown-button" onclick="board.previousYear()"></i>
+                                <a class="button" id="year-display"></a>
+                                <i class="button triangle-right updown-button" onclick="board.nextYear()"></i>
+                            </div>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <div id="board"></div>
+                </div>
+                <div class="clr"></div>
+            </div>
+        </div>
+</body>
+
+</html>
